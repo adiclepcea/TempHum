@@ -1,0 +1,1 @@
+<Project name="TempHumSHT11"><File path="main.c"></File><File path="I2C.c"></File><File path="I2C.h"></File><File path="SHT11.h"></File><File path="USART.c"></File><File path="usart.h"></File></Project>

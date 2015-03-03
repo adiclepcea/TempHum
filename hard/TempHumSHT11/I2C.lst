@@ -1,0 +1,339 @@
+   1               		.file	"I2C.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	I2CInit
+  18               	I2CInit:
+  19               	.LFB7:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 88E4      		ldi r24,lo8(72)
+  25 0002 80B9      		out 32-32,r24
+  26               	.LM3:
+  27 0004 11B8      		out 33-32,__zero_reg__
+  28               	.LM4:
+  29 0006 86B7      		in r24,86-32
+  30 0008 8460      		ori r24,lo8(4)
+  31 000a 86BF      		out 86-32,r24
+  32               	/* epilogue start */
+  33               	.LM5:
+  34 000c 0895      		ret
+  35               	.LFE7:
+  37               	.global	I2CClose
+  39               	I2CClose:
+  40               	.LFB8:
+  41               	.LM6:
+  42               	/* prologue: function */
+  43               	/* frame size = 0 */
+  44               	.LM7:
+  45 000e 86B7      		in r24,86-32
+  46 0010 8B7F      		andi r24,lo8(-5)
+  47 0012 86BF      		out 86-32,r24
+  48               	/* epilogue start */
+  49               	.LM8:
+  50 0014 0895      		ret
+  51               	.LFE8:
+  53               	.global	I2CStart
+  55               	I2CStart:
+  56               	.LFB9:
+  57               	.LM9:
+  58               	/* prologue: function */
+  59               	/* frame size = 0 */
+  60               	.LM10:
+  61 0016 84EA      		ldi r24,lo8(-92)
+  62 0018 86BF      		out 86-32,r24
+  63 001a 8091 0000 		lds r24,delay_cnt
+  64               	.LBB54:
+  65               	.LBB55:
+  66               	.LBB56:
+  67               	.LBB57:
+  68               	.LM11:
+  69 001e 25E3      		ldi r18,lo8(53)
+  70 0020 00C0      		rjmp .L6
+  71               	.L9:
+  72 0022 822F      		mov r24,r18
+  73               	.LVL0:
+  74               	/* #APP */
+  75               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  76 0024 8A95      		1: dec r24
+  77 0026 01F4      		brne 1b
+  78               	 ;  0 "" 2
+  79               	/* #NOAPP */
+  80 0028 892F      		mov r24,r25
+  81               	.LVL1:
+  82               	.L6:
+  83               	.LBE57:
+  84               	.LBE56:
+  85               	.LBE55:
+  86               	.LBE54:
+  87               	.LM12:
+  88 002a 06B6      		in __tmp_reg__,86-32
+  89 002c 07FC      		sbrc __tmp_reg__,7
+  90 002e 00C0      		rjmp .L8
+  91 0030 982F      		mov r25,r24
+  92 0032 9F5F      		subi r25,lo8(-(1))
+  93 0034 8436      		cpi r24,lo8(100)
+  94 0036 00F0      		brlo .L9
+  95               	.L8:
+  96               	.LM13:
+  97 0038 1092 0000 		sts delay_cnt,__zero_reg__
+  98               	/* epilogue start */
+  99               	.LM14:
+ 100 003c 0895      		ret
+ 101               	.LFE9:
+ 103               	.global	I2C_IsBusy
+ 105               	I2C_IsBusy:
+ 106               	.LFB10:
+ 107               	.LM15:
+ 108               	/* prologue: function */
+ 109               	/* frame size = 0 */
+ 110               	.LM16:
+ 111 003e 86B7      		in r24,86-32
+ 112 0040 8095      		com r24
+ 113               	.LM17:
+ 114 0042 881F      		rol r24
+ 115 0044 8827      		clr r24
+ 116 0046 881F      		rol r24
+ 117               	/* epilogue start */
+ 118 0048 0895      		ret
+ 119               	.LFE10:
+ 121               	.global	GetErr
+ 123               	GetErr:
+ 124               	.LFB11:
+ 125               	.LM18:
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	.LM19:
+ 129 004a 8091 0000 		lds r24,err
+ 130               	/* epilogue start */
+ 131 004e 0895      		ret
+ 132               	.LFE11:
+ 134               	.global	I2CStop
+ 136               	I2CStop:
+ 137               	.LFB12:
+ 138               	.LM20:
+ 139               	/* prologue: function */
+ 140               	/* frame size = 0 */
+ 141               	.LM21:
+ 142 0050 84E9      		ldi r24,lo8(-108)
+ 143 0052 86BF      		out 86-32,r24
+ 144 0054 8091 0000 		lds r24,delay_cnt
+ 145               	.LBB58:
+ 146               	.LBB59:
+ 147               	.LBB60:
+ 148               	.LBB61:
+ 149               	.LM22:
+ 150 0058 25E3      		ldi r18,lo8(53)
+ 151 005a 00C0      		rjmp .L17
+ 152               	.L20:
+ 153 005c 822F      		mov r24,r18
+ 154               	.LVL2:
+ 155               	/* #APP */
+ 156               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 157 005e 8A95      		1: dec r24
+ 158 0060 01F4      		brne 1b
+ 159               	 ;  0 "" 2
+ 160               	/* #NOAPP */
+ 161 0062 892F      		mov r24,r25
+ 162               	.LVL3:
+ 163               	.L17:
+ 164               	.LBE61:
+ 165               	.LBE60:
+ 166               	.LBE59:
+ 167               	.LBE58:
+ 168               	.LM23:
+ 169 0064 06B6      		in __tmp_reg__,86-32
+ 170 0066 07FC      		sbrc __tmp_reg__,7
+ 171 0068 00C0      		rjmp .L19
+ 172 006a 982F      		mov r25,r24
+ 173 006c 9F5F      		subi r25,lo8(-(1))
+ 174 006e 8436      		cpi r24,lo8(100)
+ 175 0070 00F0      		brlo .L20
+ 176               	.L19:
+ 177               	.LM24:
+ 178 0072 1092 0000 		sts delay_cnt,__zero_reg__
+ 179               	.LBB62:
+ 180               	.LBB63:
+ 181               	.LBB64:
+ 182               	.LBB65:
+ 183               	.LM25:
+ 184 0076 85E3      		ldi r24,lo8(53)
+ 185               	.LVL4:
+ 186               	/* #APP */
+ 187               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 188 0078 8A95      		1: dec r24
+ 189 007a 01F4      		brne 1b
+ 190               	 ;  0 "" 2
+ 191               	/* epilogue start */
+ 192               	/* #NOAPP */
+ 193               	.LBE65:
+ 194               	.LBE64:
+ 195               	.LBE63:
+ 196               	.LBE62:
+ 197               	.LM26:
+ 198 007c 0895      		ret
+ 199               	.LFE12:
+ 201               	.global	I2CWriteByte
+ 203               	I2CWriteByte:
+ 204               	.LFB13:
+ 205               	.LM27:
+ 206               	.LVL5:
+ 207               	/* prologue: function */
+ 208               	/* frame size = 0 */
+ 209               	.LM28:
+ 210 007e 83B9      		out 35-32,r24
+ 211               	.LM29:
+ 212 0080 84E8      		ldi r24,lo8(-124)
+ 213               	.LVL6:
+ 214 0082 86BF      		out 86-32,r24
+ 215 0084 8091 0000 		lds r24,delay_cnt
+ 216               	.LBB66:
+ 217               	.LBB67:
+ 218               	.LBB68:
+ 219               	.LBB69:
+ 220               	.LM30:
+ 221 0088 25E3      		ldi r18,lo8(53)
+ 222 008a 00C0      		rjmp .L23
+ 223               	.L26:
+ 224 008c 822F      		mov r24,r18
+ 225               	.LVL7:
+ 226               	/* #APP */
+ 227               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 228 008e 8A95      		1: dec r24
+ 229 0090 01F4      		brne 1b
+ 230               	 ;  0 "" 2
+ 231               	/* #NOAPP */
+ 232 0092 892F      		mov r24,r25
+ 233               	.LVL8:
+ 234               	.L23:
+ 235               	.LBE69:
+ 236               	.LBE68:
+ 237               	.LBE67:
+ 238               	.LBE66:
+ 239               	.LM31:
+ 240 0094 06B6      		in __tmp_reg__,86-32
+ 241 0096 07FC      		sbrc __tmp_reg__,7
+ 242 0098 00C0      		rjmp .L25
+ 243 009a 982F      		mov r25,r24
+ 244 009c 9F5F      		subi r25,lo8(-(1))
+ 245 009e 8436      		cpi r24,lo8(100)
+ 246 00a0 00F0      		brlo .L26
+ 247               	.L25:
+ 248               	.LM32:
+ 249 00a2 1092 0000 		sts delay_cnt,__zero_reg__
+ 250               	.LM33:
+ 251 00a6 81B1      		in r24,33-32
+ 252 00a8 8831      		cpi r24,lo8(24)
+ 253 00aa 01F0      		breq .L27
+ 254 00ac 81B1      		in r24,33-32
+ 255 00ae 8832      		cpi r24,lo8(40)
+ 256 00b0 01F0      		breq .L27
+ 257 00b2 81B1      		in r24,33-32
+ 258 00b4 8034      		cpi r24,lo8(64)
+ 259 00b6 01F0      		breq .L27
+ 260               	.LM34:
+ 261 00b8 81B1      		in r24,33-32
+ 262 00ba 8032      		cpi r24,lo8(32)
+ 263 00bc 01F0      		breq .L28
+ 264 00be 80E0      		ldi r24,lo8(0)
+ 265 00c0 0895      		ret
+ 266               	.L28:
+ 267               	.LM35:
+ 268 00c2 80EB      		ldi r24,lo8(-80)
+ 269 00c4 86BF      		out 86-32,r24
+ 270 00c6 80E2      		ldi r24,lo8(32)
+ 271 00c8 0895      		ret
+ 272               	.L27:
+ 273               	.LM36:
+ 274 00ca 81E0      		ldi r24,lo8(1)
+ 275               	.LM37:
+ 276 00cc 0895      		ret
+ 277               	.LFE13:
+ 279               	.global	I2CReadByte
+ 281               	I2CReadByte:
+ 282               	.LFB14:
+ 283               	.LM38:
+ 284               	.LVL9:
+ 285               	/* prologue: function */
+ 286               	/* frame size = 0 */
+ 287 00ce FC01      		movw r30,r24
+ 288               	.LM39:
+ 289 00d0 6623      		tst r22
+ 290 00d2 01F0      		breq .L32
+ 291               	.LVL10:
+ 292               	.LM40:
+ 293 00d4 86B7      		in r24,86-32
+ 294 00d6 8064      		ori r24,lo8(64)
+ 295 00d8 00C0      		rjmp .L39
+ 296               	.LVL11:
+ 297               	.L32:
+ 298               	.LM41:
+ 299 00da 86B7      		in r24,86-32
+ 300 00dc 8F7B      		andi r24,lo8(-65)
+ 301               	.L39:
+ 302 00de 86BF      		out 86-32,r24
+ 303               	.LM42:
+ 304 00e0 86B7      		in r24,86-32
+ 305 00e2 8068      		ori r24,lo8(-128)
+ 306 00e4 86BF      		out 86-32,r24
+ 307               	.L34:
+ 308               	.LM43:
+ 309 00e6 06B6      		in __tmp_reg__,86-32
+ 310 00e8 07FE      		sbrs __tmp_reg__,7
+ 311 00ea 00C0      		rjmp .L34
+ 312               	.LM44:
+ 313 00ec 81B1      		in r24,33-32
+ 314 00ee 887F      		andi r24,lo8(-8)
+ 315 00f0 8835      		cpi r24,lo8(88)
+ 316 00f2 01F0      		breq .L35
+ 317 00f4 81B1      		in r24,33-32
+ 318 00f6 887F      		andi r24,lo8(-8)
+ 319 00f8 8035      		cpi r24,lo8(80)
+ 320 00fa 01F0      		breq .L35
+ 321 00fc 80E0      		ldi r24,lo8(0)
+ 322 00fe 0895      		ret
+ 323               	.L35:
+ 324               	.LM45:
+ 325 0100 83B1      		in r24,35-32
+ 326 0102 8083      		st Z,r24
+ 327 0104 81E0      		ldi r24,lo8(1)
+ 328               	.LM46:
+ 329 0106 0895      		ret
+ 330               	.LFE14:
+ 332               	.global	delay_cnt
+ 333               	.global	delay_cnt
+ 334               		.section .bss
+ 337               	delay_cnt:
+ 338 0000 00        		.skip 1,0
+ 339               	.global	err
+ 340               	.global	err
+ 343               	err:
+ 344 0001 00        		.skip 1,0
+ 425               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 I2C.c
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:2      *ABS*:0000003f __SREG__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:3      *ABS*:0000003e __SP_H__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:4      *ABS*:0000003d __SP_L__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:5      *ABS*:00000034 __CCP__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:18     .text:00000000 I2CInit
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:39     .text:0000000e I2CClose
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:55     .text:00000016 I2CStart
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:337    .bss:00000000 delay_cnt
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:105    .text:0000003e I2C_IsBusy
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:123    .text:0000004a GetErr
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:343    .bss:00000001 err
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:136    .text:00000050 I2CStop
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:203    .text:0000007e I2CWriteByte
+C:\Users\ROLAND~1.CLE\AppData\Local\Temp/ccYr3IwT.s:281    .text:000000ce I2CReadByte
+
+UNDEFINED SYMBOLS
+__do_clear_bss
